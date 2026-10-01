@@ -259,9 +259,17 @@
     }
 
     function parseCSV(text) {
-      return text.trim().split("\n").map(row =>
-        row.split(",").map(cell => cell.replace(/^"|"$/g, "").trim())
-      );
+      return text.trim().split("\n").map(row => {
+        const cells = [];
+        let current = "", inQuotes = false;
+        for (const ch of row) {
+          if (ch === '"') { inQuotes = !inQuotes; }
+          else if (ch === ',' && !inQuotes) { cells.push(current.trim()); current = ""; }
+          else { current += ch; }
+        }
+        cells.push(current.trim());
+        return cells;
+      });
     }
 
     function buildCard(row, issilver = false) {
