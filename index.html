@@ -255,7 +255,7 @@
     // ─────────────────────────────────────────────────────────────────────────
 
     function formatINR(value) {
-      return "₹" + Number(value).toLocaleString("en-IN");
+      return "₹" + Number(String(value).replace(/,/g, "")).toLocaleString("en-IN");
     }
 
     function parseCSV(text) {
