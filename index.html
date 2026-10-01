@@ -273,21 +273,12 @@
     }
 
     function buildCard(row, issilver = false) {
-      const [item, rate, unit, change] = row;
-      const changeNum = parseFloat(change || "0");
-      const changeClass = changeNum > 0 ? "up" : changeNum < 0 ? "down" : "same";
-      const changeLabel = changeNum > 0
-        ? `▲ ₹${changeNum} today`
-        : changeNum < 0
-          ? `▼ ₹${Math.abs(changeNum)} today`
-          : "No change today";
-
+      const [item, rate, unit] = row;
       return `
         <div class="rate-card${issilver ? " silver-card" : ""}">
           <div class="label">${item}</div>
           <div class="price">${formatINR(rate)}</div>
           <div class="unit">${unit || "per gram"}</div>
-          <span class="change ${changeClass}">${changeLabel}</span>
         </div>`;
     }
 
