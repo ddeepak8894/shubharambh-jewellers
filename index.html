@@ -42,18 +42,19 @@
     }
 
     .logo-ring {
-      width: 80px;
-      height: 80px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      background: #6b1a42;
-      border: 2px solid #c9a84c;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
       margin: 0 auto 16px;
-      font-size: 2rem;
       position: relative;
       z-index: 1;
+    }
+
+    .logo-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .banner h1 {
@@ -225,10 +226,7 @@
 <body>
 
   <div class="banner">
-    <div class="logo-ring">💍</div>
-    <h1>Shubharambh Jewellers</h1>
-    <p class="sub">Chikodi</p>
-    <div class="gold-line"></div>
+    <div class="logo-ring"><img src="logo.png" alt="Shubharambh Jewellers" /></div>
   </div>
 
   <div class="date-strip" id="date-display">—</div>
