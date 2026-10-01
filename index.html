@@ -247,17 +247,12 @@
 
   <script>
     // ─── CONFIGURATION ────────────────────────────────────────────────────────
-    // Paste your Google Sheet ID here (from the sheet URL)
-    const SHEET_ID = "1T7XvVmZUxNyXyfHv03n3D5so3ty33axdYJT5OSwWKqU";
-
-    // Tab name at the bottom of your Google Sheet
-    const SHEET_NAME = "Sheet1";
+    // Published CSV URL from Google Sheets (File → Share → Publish to web → CSV)
+    const SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTYOGr5er1W8Qq2m3PVwc2fcMficl0vWS2G1Kawp9QB7lr2N2MbsVT3CHs3HF0YB2NyqH7ZAMcZqgrA/pub?gid=0&single=true&output=csv";
 
     // Auto-refresh every 5 minutes
     const REFRESH_INTERVAL = 300000;
     // ─────────────────────────────────────────────────────────────────────────
-
-    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
 
     function formatINR(value) {
       return "₹" + Number(value).toLocaleString("en-IN");
@@ -290,7 +285,7 @@
 
     async function fetchRates() {
       try {
-        const res = await fetch(SHEET_URL + "&t=" + Date.now());
+        const res = await fetch(SHEET_URL + "&t=" + Date.now(), { cache: "no-store" });
         if (!res.ok) throw new Error("Network error");
 
         const text = await res.text();
