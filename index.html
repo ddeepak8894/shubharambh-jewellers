@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shubharambh Jewellers – Today's Rates</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #f9f4ef;
+      color: #2d1b1b;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 0 48px;
+    }
+
+    /* ── Top banner ── */
+    .banner {
+      width: 100%;
+      background: linear-gradient(135deg, #4a0f2e 0%, #6b1a42 60%, #4a0f2e 100%);
+      padding: 32px 24px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 18px,
+        rgba(201,168,76,0.05) 18px,
+        rgba(201,168,76,0.05) 19px
+      );
+    }
+
+    .logo-ring {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: #6b1a42;
+      border: 2px solid #c9a84c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #c9a84c;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner .sub {
+      font-size: 0.78rem;
+      color: #e8d4b0;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gold-line {
+      width: 60px;
+      height: 2px;
+      background: #c9a84c;
+      margin: 12px auto 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Date strip ── */
+    .date-strip {
+      background: #fff8f0;
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.82rem;
+      color: #7a4a4a;
+      border-bottom: 1px solid #e8d4c0;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Section title ── */
+    .section-title {
+      margin: 36px 0 20px;
+      text-align: center;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #9a6a6a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 860px;
+      padding: 0 16px;
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #dcc8b0;
+    }
+
+    /* ── Rates grid ── */
+    .rates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 860px;
+      padding: 0 16px;
+    }
+
+    .rate-card {
+      background: #fff;
+      border: 1px solid #e8d8c8;
+      border-top: 3px solid #c9a84c;
+      border-radius: 10px;
+      padding: 24px 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(100,40,40,0.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .rate-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(100,40,40,0.1);
+    }
+
+    .rate-card .label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #9a6a6a;
+      margin-bottom: 10px;
+    }
+
+    .rate-card .price {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #3a1010;
+    }
+
+    .rate-card .unit {
+      font-size: 0.72rem;
+      color: #b08080;
+      margin-top: 4px;
+    }
+
+    .rate-card .change {
+      margin-top: 12px;
+      font-size: 0.74rem;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+    }
+
+    .change.up   { background: #eaf6ee; color: #2e7d52; }
+    .change.down { background: #fdeaea; color: #c0392b; }
+    .change.same { background: #f5f0eb; color: #9a7a6a; }
+
+    /* ── Silver section ── */
+    .silver-card {
+      border-top-color: #a0a0a0;
+    }
+
+    .silver-card .price { color: #3a3a3a; }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      padding: 0 16px;
+    }
+
+    .last-updated {
+      font-size: 0.75rem;
+      color: #b08080;
+    }
+
+    .last-updated span { color: #7a4a4a; font-weight: 600; }
+
+    .shop-note {
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: #c0a090;
+    }
+
+    .error-msg {
+      color: #c0392b;
+      font-size: 0.85rem;
+      margin-top: 20px;
+      background: #fdeaea;
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+
+    .loading {
+      color: #9a6a6a;
+      font-size: 0.95rem;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="banner">
+    <div class="logo-ring">💍</div>
+    <h1>Shubharambh Jewellers</h1>
+    <p class="sub">Chikodi</p>
+    <div class="gold-line"></div>
+  </div>
+
+  <div class="date-strip" id="date-display">—</div>
+
+  <div class="section-title">Gold Rates</div>
+  <div id="gold-container" class="loading">Fetching rates…</div>
+
+  <div class="section-title" id="silver-section-title" style="display:none">Silver Rates</div>
+  <div id="silver-container" class="rates-grid" style="display:none"></div>
+
+  <div class="footer">
+    <p class="last-updated">Rates updated at: <span id="last-updated">—</span></p>
+    <p class="shop-note">Rates are indicative. Contact shop for final pricing.</p>
+    <p id="error-msg" class="error-msg" style="display:none"></p>
+  </div>
+
+  <script>
+    // ─── CONFIGURATION ────────────────────────────────────────────────────────
+    // Paste your Google Sheet ID here (from the sheet URL)
+    const SHEET_ID = "YOUR_SHEET_ID_HERE";
+
+    // Tab name at the bottom of your Google Sheet
+    const SHEET_NAME = "Rates";
+
+    // Auto-refresh every 5 minutes
+    const REFRESH_INTERVAL = 300000;
+    // ─────────────────────────────────────────────────────────────────────────
+
+    const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+    function formatINR(value) {
+      return "₹" + Number(value).toLocaleString("en-IN");
+    }
+
+    function parseCSV(text) {
+      return text.trim().split("\n").map(row =>
+        row.split(",").map(cell => cell.replace(/^"|"$/g, "").trim())
+      );
+    }
+
+    function buildCard(row, issilver = false) {
+      const [item, rate, unit, change] = row;
+      const changeNum = parseFloat(change || "0");
+      const changeClass = changeNum > 0 ? "up" : changeNum < 0 ? "down" : "same";
+      const changeLabel = changeNum > 0
+        ? `▲ ₹${changeNum} today`
+        : changeNum < 0
+          ? `▼ ₹${Math.abs(changeNum)} today`
+          : "No change today";
+
+      return `
+        <div class="rate-card${issilver ? " silver-card" : ""}">
+          <div class="label">${item}</div>
+          <div class="price">${formatINR(rate)}</div>
+          <div class="unit">${unit || "per gram"}</div>
+          <span class="change ${changeClass}">${changeLabel}</span>
+        </div>`;
+    }
+
+    async function fetchRates() {
+      try {
+        const res = await fetch(SHEET_URL + "&t=" + Date.now());
+        if (!res.ok) throw new Error("Network error");
+
+        const text = await res.text();
+        const rows = parseCSV(text).slice(1).filter(r => r.length >= 3 && r[0]);
+
+        const goldRows   = rows.filter(r => !r[0].toLowerCase().includes("silver"));
+        const silverRows = rows.filter(r =>  r[0].toLowerCase().includes("silver"));
+
+        const goldEl = document.getElementById("gold-container");
+        goldEl.className = "rates-grid";
+        goldEl.innerHTML = goldRows.map(r => buildCard(r, false)).join("");
+
+        if (silverRows.length) {
+          document.getElementById("silver-section-title").style.display = "flex";
+          const silverEl = document.getElementById("silver-container");
+          silverEl.style.display = "grid";
+          silverEl.innerHTML = silverRows.map(r => buildCard(r, true)).join("");
+        }
+
+        document.getElementById("last-updated").textContent =
+          new Date().toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+        document.getElementById("error-msg").style.display = "none";
+
+      } catch (err) {
+        document.getElementById("gold-container").innerHTML = "";
+        document.getElementById("gold-container").className = "";
+        const errEl = document.getElementById("error-msg");
+        errEl.style.display = "block";
+        errEl.textContent = "Could not load rates. Please check Sheet ID and publication settings.";
+      }
+    }
+
+    document.getElementById("date-display").textContent =
+      new Date().toLocaleDateString("en-IN", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+      });
+
+    fetchRates();
+    setInterval(fetchRates, REFRESH_INTERVAL);
+  </script>
+
+</body>
+</html>
