@@ -511,17 +511,25 @@
 
       let waveOffset = 0;
 
-      function drawStar4(x, y, r, rot) {
-        ctx.beginPath();
-        for (let i = 0; i < 8; i++) {
-          const a   = rot + (i * TAU) / 8;
-          const rad = i % 2 === 0 ? r : r * 0.3;
-          i === 0
-            ? ctx.moveTo(x + Math.cos(a) * rad, y + Math.sin(a) * rad)
-            : ctx.lineTo(x + Math.cos(a) * rad, y + Math.sin(a) * rad);
+      function drawFlower(x, y, r, rot, petals = 5) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate(rot);
+        for (let i = 0; i < petals; i++) {
+          const angle = (i * TAU) / petals;
+          ctx.beginPath();
+          ctx.ellipse(
+            Math.cos(angle) * r * 0.52,
+            Math.sin(angle) * r * 0.52,
+            r * 0.42, r * 0.22,
+            angle, 0, TAU
+          );
+          ctx.fill();
         }
-        ctx.closePath();
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.22, 0, TAU);
         ctx.fill();
+        ctx.restore();
       }
 
       function drawDiamond(x, y, size, rot) {
@@ -597,7 +605,7 @@
           // star shape
           ctx.globalAlpha = a;
           ctx.fillStyle = a > 0.6 ? "#f0d060" : "#c9a84c";
-          drawStar4(p.x, p.y, p.r, p.rot);
+          drawFlower(p.x, p.y, p.r, p.rot);
         });
 
         // diamonds
