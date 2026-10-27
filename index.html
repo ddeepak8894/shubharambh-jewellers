@@ -483,7 +483,7 @@
         return {
           x: Math.random() * (W || 800),
           y: fromBottom ? (H || 800) + 10 : Math.random() * (H || 800),
-          r: Math.random() * 6 + 3,
+          r: Math.random() * 9 + 6,
           vx: (Math.random() - 0.5) * 0.3,
           vy: -(Math.random() * 0.5 + 0.1),
           phase: Math.random() * TAU,
@@ -515,8 +515,10 @@
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(rot);
+        ctx.lineWidth = 1.4;
+        ctx.lineJoin = "round";
         const petals = 6;
-        ctx.fillStyle = petalColor || "#c9a84c";
+        ctx.strokeStyle = petalColor || "#c9a84c";
         for (let i = 0; i < petals; i++) {
           ctx.save();
           ctx.rotate((i * TAU) / petals);
@@ -524,13 +526,13 @@
           ctx.moveTo(0, 0);
           ctx.bezierCurveTo( r * 0.38, -r * 0.14,  r * 0.38,  r * 0.78, 0, r * 0.92);
           ctx.bezierCurveTo(-r * 0.38,  r * 0.78, -r * 0.38, -r * 0.14, 0, 0);
-          ctx.fill();
+          ctx.stroke();
           ctx.restore();
         }
-        ctx.fillStyle = centerColor || "#6b1a42";
+        ctx.strokeStyle = centerColor || "#6b1a42";
         ctx.beginPath();
-        ctx.arc(0, 0, r * 0.26, 0, TAU);
-        ctx.fill();
+        ctx.arc(0, 0, r * 0.22, 0, TAU);
+        ctx.stroke();
         ctx.restore();
       }
 
@@ -634,7 +636,7 @@
           const p = spawnStar();
           p.x  = e.clientX;
           p.y  = e.clientY;
-          p.r  = Math.random() * 6 + 3;
+          p.r  = Math.random() * 10 + 7;
           p.vx = (Math.random() - 0.5) * 6;
           p.vy = (Math.random() - 0.5) * 6 - 1;
           p.phase = 0;
