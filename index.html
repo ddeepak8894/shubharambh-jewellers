@@ -283,30 +283,6 @@
 
     .shop-note { margin-top: 8px; font-size: 0.72rem; color: #c0a090; }
 
-    .visitor-count {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 14px;
-      font-size: 0.75rem;
-      color: #9a6a6a;
-      background: #fff8f0;
-      border: 1px solid #e8d4c0;
-      border-radius: 20px;
-      padding: 5px 14px;
-    }
-
-    .visitor-count .vc-dot {
-      width: 7px; height: 7px;
-      background: #c9a84c;
-      border-radius: 50%;
-      animation: vc-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes vc-pulse {
-      0%,100% { opacity: 1; transform: scale(1); }
-      50%      { opacity: 0.5; transform: scale(0.7); }
-    }
 
     .error-msg {
       color: #c0392b;
@@ -465,10 +441,6 @@
     <p class="last-updated">Rates updated at: <span id="last-updated">—</span></p>
     <p class="shop-note">Rates are indicative. Contact shop for final pricing.</p>
     <p id="error-msg" class="error-msg" style="display:none"></p>
-    <div class="visitor-count">
-      <span class="vc-dot"></span>
-      <span id="visitor-count">— visitors</span>
-    </div>
   </div>
 
   <script>
@@ -786,18 +758,6 @@
     fetchRates();
     setInterval(fetchRates, REFRESH_INTERVAL);
 
-    // ── Visitor counter ───────────────────────────────────────────────────────
-    fetch("https://api.counterapi.dev/v1/shubharambh-jewellers/visits/up")
-      .then(r => r.json())
-      .then(data => {
-        const el = document.getElementById("visitor-count");
-        if (data && data.count) {
-          el.textContent = Number(data.count).toLocaleString("en-IN") + " visitors";
-        }
-      })
-      .catch(() => {
-        document.getElementById("visitor-count").textContent = "visitor counter unavailable";
-      });
   </script>
 
 </body>
