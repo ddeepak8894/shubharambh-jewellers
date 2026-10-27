@@ -468,7 +468,7 @@
     <p id="error-msg" class="error-msg" style="display:none"></p>
     <div class="visitor-count">
       <span class="vc-dot"></span>
-      <span id="visitor-count">— visitors</span>
+      <img src="https://hits.sh/ddeepak8894.github.io/shubharambh-jewellers/.svg?style=flat&label=Visitors&color=c9a84c&labelColor=6b1a42" alt="Visitor count" style="height:18px;vertical-align:middle;" />
     </div>
   </div>
 
@@ -787,18 +787,6 @@
     fetchRates();
     setInterval(fetchRates, REFRESH_INTERVAL);
 
-    // ── Visitor counter ───────────────────────────────────────────────────────
-    fetch("https://api.counterapi.dev/v1/shubharambh-jewellers/visits/up")
-      .then(r => r.json())
-      .then(data => {
-        const el = document.getElementById("visitor-count");
-        if (data && data.count) {
-          el.textContent = Number(data.count).toLocaleString("en-IN") + " visitors";
-        }
-      })
-      .catch(() => {
-        document.getElementById("visitor-count").textContent = "visitor counter unavailable";
-      });
 
   </script>
 
