@@ -41,14 +41,29 @@
     /* ── Top banner ── */
     .banner {
       width: 100%;
-      background:
-        linear-gradient(135deg, rgba(74,15,46,0.82) 0%, rgba(107,26,66,0.78) 60%, rgba(74,15,46,0.85) 100%),
-        url('hero.jpg') center center / cover no-repeat;
+      background: linear-gradient(135deg, rgba(74,15,46,0.82) 0%, rgba(107,26,66,0.78) 60%, rgba(74,15,46,0.85) 100%);
       padding: 36px 24px 32px;
       text-align: center;
       position: relative;
       overflow: hidden;
       z-index: 1;
+    }
+
+    .banner-bg {
+      position: absolute;
+      inset: -12%;
+      background: url('hero.jpg') center center / cover no-repeat;
+      animation: ken-burns 22s ease-in-out infinite alternate;
+      z-index: 0;
+      will-change: transform;
+    }
+
+    @keyframes ken-burns {
+      0%   { transform: scale(1)    translate(0%,    0%);   }
+      25%  { transform: scale(1.07) translate(-1.5%, 0.8%); }
+      50%  { transform: scale(1.1)  translate(1%,   -1%);   }
+      75%  { transform: scale(1.06) translate(1.5%,  1%);   }
+      100% { transform: scale(1.12) translate(-1%,   0.5%); }
     }
 
     .banner::before {
@@ -59,6 +74,7 @@
         45deg, transparent, transparent 18px,
         rgba(201,168,76,0.05) 18px, rgba(201,168,76,0.05) 19px
       );
+      z-index: 1;
     }
 
     .logo-ring {
@@ -391,6 +407,7 @@
   <canvas id="sparkle-canvas"></canvas>
 
   <div class="banner">
+    <div class="banner-bg"></div>
     <div class="logo-ring"><img src="logo.png" alt="Shubharambh Jewellers" /></div>
     <h1>Shubharambh Jewellers</h1>
     <p class="sub">Chikodi</p>
