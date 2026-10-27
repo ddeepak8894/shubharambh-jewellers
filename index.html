@@ -468,7 +468,7 @@
     <p id="error-msg" class="error-msg" style="display:none"></p>
     <div class="visitor-count">
       <span class="vc-dot"></span>
-      <img src="https://hits.sh/ddeepak8894.github.io/shubharambh-jewellers/.svg?style=flat&label=Visitors&color=c9a84c&labelColor=6b1a42" alt="Visitor count" style="height:18px;vertical-align:middle;" />
+      <span id="visitor-count">👁 Visitors: —</span>
     </div>
   </div>
 
@@ -786,6 +786,19 @@
 
     fetchRates();
     setInterval(fetchRates, REFRESH_INTERVAL);
+
+    // ── Visitor counter via hits.sh ───────────────────────────────────────────
+    fetch("https://hits.sh/ddeepak8894.github.io/shubharambh-jewellers/.svg")
+      .then(r => r.text())
+      .then(svg => {
+        const nums = [...svg.matchAll(/>(\d+)</g)].map(m => parseInt(m[1]));
+        const count = nums.length ? Math.max(...nums) : null;
+        if (count !== null) {
+          document.getElementById("visitor-count").textContent =
+            "👁 Visitors: " + count.toLocaleString("en-IN");
+        }
+      })
+      .catch(() => {});
 
 
   </script>
