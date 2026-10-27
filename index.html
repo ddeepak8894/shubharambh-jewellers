@@ -483,7 +483,7 @@
         return {
           x: Math.random() * (W || 800),
           y: fromBottom ? (H || 800) + 10 : Math.random() * (H || 800),
-          r: Math.random() * 9 + 6,
+          r: Math.random() * 16 + 12,
           vx: (Math.random() - 0.5) * 0.3,
           vy: -(Math.random() * 0.5 + 0.1),
           phase: Math.random() * TAU,
@@ -636,7 +636,7 @@
           const p = spawnStar();
           p.x  = e.clientX;
           p.y  = e.clientY;
-          p.r  = Math.random() * 10 + 7;
+          p.r  = Math.random() * 18 + 14;
           p.vx = (Math.random() - 0.5) * 6;
           p.vy = (Math.random() - 0.5) * 6 - 1;
           p.phase = 0;
