@@ -1,0 +1,50 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#4a0f2e"/>
+      <stop offset="55%"  stop-color="#6b1a42"/>
+      <stop offset="100%" stop-color="#4a0f2e"/>
+    </linearGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="36" stroke="rgba(201,168,76,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- Gold divider lines -->
+  <line x1="80" y1="60" x2="1120" y2="60"  stroke="#c9a84c" stroke-width="1.5" opacity="0.4"/>
+  <line x1="80" y1="570" x2="1120" y2="570" stroke="#c9a84c" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Logo circle -->
+  <circle cx="600" cy="170" r="90" fill="none" stroke="#c9a84c" stroke-width="3"/>
+  <image href="logo.png" x="510" y="80" width="180" height="180"/>
+
+  <!-- Shop name -->
+  <text x="600" y="322" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="72" font-weight="800"
+        letter-spacing="10" fill="#c9a84c">SHUBHARAMBH</text>
+
+  <text x="600" y="390" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="52" font-weight="400"
+        letter-spacing="18" fill="#e8d4b0">JEWELLERS</text>
+
+  <text x="600" y="438" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="28" font-weight="400"
+        letter-spacing="14" fill="#b09080">CHIKODI</text>
+
+  <!-- Gold separator -->
+  <rect x="520" y="458" width="160" height="2" fill="#c9a84c" opacity="0.7"/>
+
+  <!-- Today's Rates highlight -->
+  <text x="600" y="518" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="38" font-weight="700"
+        letter-spacing="4" fill="#c9a84c">✦  Today's Gold &amp; Silver Rates  ✦</text>
+
+  <!-- URL -->
+  <text x="600" y="556" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="20"
+        letter-spacing="2" fill="#9a7070">ddeepak8894.github.io/shubharambh-jewellers</text>
+</svg>
